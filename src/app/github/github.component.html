@@ -1,1 +1,12 @@
-<p>github works!</p>
+<div>
+    <app-github-search-form> (emitSearch)="searchGithubUser($event)"</app-github-search-form>
+    <div *ngIf="githubUsers">
+        <div class="card-columns">
+            <div *ngFor="let githubUser of githubUsers">
+                <div class="jumbotron">
+                    "{{githubUser.url}}" class="jumbotron-profile"
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
