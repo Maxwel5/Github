@@ -6,12 +6,14 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./github-search-form.component.css']
 })
 export class GithubSearchFormComponent implements OnInit {
-  @Output() emitFind = new EventEmitter<any>()
+  @Output() emitSearch = new EventEmitter<any>()
 
   findUser:string;
   constructor() { }
 
-  find()
+  find(){
+    this.emitSearch.emit(this.findUser);
+  }
 
   ngOnInit() {
   }
