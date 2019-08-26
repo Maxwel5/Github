@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Repository } from './repository';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RepoHttpServiceService {
 
-  :Github[]=[];
+  repositories:Repository[]=[];
 
   constructor(private http:HttpClient) { }
 
@@ -15,16 +18,17 @@ export class RepoHttpServiceService {
     let promise =  new Promise((resolve, reject)=>{
         this.http.get(searchEndpoint).toPromise().then(
           (results)=>{
-            this.githubs=[];
+            this.repositories=[];
             for(let i=0; i<results["items"].length; i++){
-              let url = results['items'][i]['avatar_url'];
-              let name = results['items'][i]['login'];
-              let id = results['items'][i]['id'];
-              let score = results['items'][i]['score'];
-              let user = new Github(id,url,name,score);
-              this.githubs.push(user);
+              let id = results["items"][i]['id'];
+              let repoName = results["items"][i]["name"];
+              let link = results["items"][i]["html_url"];
+              let dateCreated = results["items"][i]["created_at"];
+              let description =  results["items"][i]["description"];
+              let repo = new Repository(id,repoName,link,dateCreated,description);
+              this.repositories.push(repo);
             }
-            console.log(this.githubs);
+            console.log(this.repositories);
             resolve()
           },
           (error)=>{

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GithubHttpServiceService } from '../github-http-service.service';
 // import { Github } from '../github';
 import { Github } from '../github-navbar/github';
+import { RepoHttpServiceService } from '../repo-http-service.service';
+import { Repository } from '../repository';
 
 @Component({
   selector: 'app-github',
@@ -11,8 +13,9 @@ import { Github } from '../github-navbar/github';
 export class GithubComponent implements OnInit {
 
   githubs:Github[];
+  repositories:Repository[];
 
-  constructor(public githubHttpService:GithubHttpServiceService) { }
+  constructor(public githubHttpService:GithubHttpServiceService,public repoHttpService:RepoHttpServiceService) { }
 
   ngOnInit() {
     this.searchGithub("Max");
@@ -22,6 +25,14 @@ export class GithubComponent implements OnInit {
     this.githubHttpService.searchGithubs(findUser).then(
       ()=>{
         this.githubs=this.githubHttpService.githubs;
+      },
+      (error)=>{
+        console.log(error)
+      }
+    )
+    this.repoHttpService.searchGithubs(findUser).then(
+      ()=>{
+        this.repositories=this.repoHttpService.repositories;
       },
       (error)=>{
         console.log(error)

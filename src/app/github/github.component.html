@@ -2,12 +2,27 @@
     <app-github-search-form (emitSearch)="searchGithub($event)"> </app-github-search-form>
     <div *ngIf="githubs">
         <div class="card-columns">
-            <div *ngFor="let github of githubs; let i = index">
+            <div>
                 <div class="jumbotron">
-                   <img src="{{github.url}}">
-                   <p>{{github.name}}</p>
-                   <p>Score: {{github.score}}</p>
-                   <p>user:{{github.login}}</p>
+                    <div class="card" style="height:380px; width:380px;" *ngFor="let github of githubs; let i = index">
+                        <div class="card-body">
+                            <img src="{{github.url}}">
+                            <p>{{github.name}}</p>
+                            <p>Score: {{github.score}}</p>
+                            <p>{{github.login}}</p>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="card" style="height:380px; width:380px;" *ngFor="let repository of repositories; let i = index">
+                    <div class="card-body">
+                        <p>{{repository.id}}</p>
+                        <p>{{repository.repoName}}</p>
+                        <p>link:{{repository.link}}</p>
+                        <p>{{repository.dateCreated}}</p>
+                        <p>{{repository.author}}</p>
+                    </div>
                 </div>
             </div>
         </div>
