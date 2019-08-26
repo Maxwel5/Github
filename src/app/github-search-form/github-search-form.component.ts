@@ -11,7 +11,7 @@ export class GithubSearchFormComponent implements OnInit {
   findUser:string;
   constructor() { }
 
-  find(){
+  search(){
     this.emitSearch.emit(this.findUser);
   }
 

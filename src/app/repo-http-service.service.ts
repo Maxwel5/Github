@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from'@angular/common/http';
-import { Github } from './github-navbar/github';
-import { environment } from '../environments/environment';
-
 
 @Injectable({
   providedIn: 'root'
 })
-export class GithubHttpServiceService {
+export class RepoHttpServiceService {
 
-  githubs:Github[]=[];
+  :Github[]=[];
 
   constructor(private http:HttpClient) { }
 
@@ -40,3 +36,4 @@ export class GithubHttpServiceService {
     return promise;
   }
 }
+

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpServiceService } from '../services/http-service.service';
-import { Githubs } from '../githubs';
+import { GithubHttpServiceService } from '../github-http-service.service';
+// import { Github } from '../github';
+import { Github } from '../github-navbar/github';
 
 @Component({
   selector: 'app-github',
@@ -8,16 +9,17 @@ import { Githubs } from '../githubs';
   styleUrls: ['./github.component.css']
 })
 export class GithubComponent implements OnInit {
+
   githubs:Github[];
 
-  constructor(public githubHttpService:GiphyHttpServiceService) { }
+  constructor(public githubHttpService:GithubHttpServiceService) { }
 
   ngOnInit() {
-    this.searchGithub("github user");
+    this.searchGithub("Max");
   }
 
-  searchGithub(searchTerm){
-    this.githubHttpService.searchGiphies(searchTerm).then(
+  searchGithub(findUser){
+    this.githubHttpService.searchGithubs(findUser).then(
       ()=>{
         this.githubs=this.githubHttpService.githubs;
       },

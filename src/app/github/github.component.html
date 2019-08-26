@@ -1,10 +1,13 @@
 <div>
-    <app-github-search-form> (emitSearch)="searchGithub($event)"</app-github-search-form>
+    <app-github-search-form (emitSearch)="searchGithub($event)"> </app-github-search-form>
     <div *ngIf="githubs">
         <div class="card-columns">
-            <div *ngFor="let github of githubs">
+            <div *ngFor="let github of githubs; let i = index">
                 <div class="jumbotron">
-                    "{{github.url}}" class="jumbotron">
+                   <img src="{{github.url}}">
+                   <p>{{github.name}}</p>
+                   <p>Score: {{github.score}}</p>
+                   <p>user:{{github.login}}</p>
                 </div>
             </div>
         </div>
