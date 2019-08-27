@@ -1,30 +1,37 @@
 <div>
     <app-github-search-form (emitSearch)="searchGithub($event)"> </app-github-search-form>
-    <div *ngIf="githubs">
-        <div class="card-columns">
-            <div>
-                <div class="jumbotron">
-                    <div class="card" style="height:380px; width:380px;" *ngFor="let github of githubs; let i = index">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Github Users</h2>
+            <div class="row">
+                <div class="col-md-6" *ngFor="let github of githubs; let i = index">
+                    <div class="card">
                         <div class="card-body">
-                            <img src="{{github.url}}">
+                            <img src="{{github.url}}" class="img-fluid rounded-circle">
                             <p>{{github.name}}</p>
-                            <p>Score: {{github.score}}</p>
-                            <p>{{github.login}}</p>
+                            <p>Score: {{github.score}}</p>                            
                         </div>
-
-                    </div>
-
-                </div>
-                <div class="card" style="height:380px; width:380px;" *ngFor="let repository of repositories; let i = index">
-                    <div class="card-body">
-                        <p>{{repository.id}}</p>
-                        <p>{{repository.repoName}}</p>
-                        <p>link:{{repository.link}}</p>
-                        <p>{{repository.dateCreated}}</p>
-                        <p>{{repository.author}}</p>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col-md-6">
+            <h2>Repositories</h2>
+            <div class="row">
+                <div class="col-md-6" *ngFor="let repository of repositories; let i = index">
+                    
+                    <div class="card" >
+                        <div class="card-body">
+                            <p><strong>Id: </strong>{{repository.id}}</p>
+                            <p><strong>Repository-name: </strong>{{repository.repoName}}</p>
+                            <p><strong>Author: </strong>{{repository.owner}}</p>
+                            <p><strong>Github Link: </strong> <a href="{{repository.link}}" class="btn btn-primary">Click Here</a> </p>
+                            <p><strong>Created:</strong>{{repository.dateCreated}}</p>
+                            <p><strong>Description</strong></p>
+                            <p>{{repository.description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
     </div>
-</div>
